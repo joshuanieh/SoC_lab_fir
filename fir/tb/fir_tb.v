@@ -49,6 +49,22 @@ module fir_tb
     reg                         axis_clk;
     reg                         axis_rst_n;
 
+// ram for tap
+    wire [3:0]               tap_WE;
+    wire                     tap_EN;
+    wire [(pDATA_WIDTH-1):0] tap_Di;
+    wire [(pADDR_WIDTH-1):0] tap_A;
+    wire [(pDATA_WIDTH-1):0] tap_Do;
+
+// ram for data RAM
+    wire [3:0]               data_WE;
+    wire                     data_EN;
+    wire [(pDATA_WIDTH-1):0] data_Di;
+    wire [(pADDR_WIDTH-1):0] data_A;
+    wire [(pDATA_WIDTH-1):0] data_Do;
+
+
+
     fir fir_DUT(
         .awready(awready),
         .wready(wready),
@@ -70,9 +86,45 @@ module fir_tb
         .sm_tvalid(sm_tvalid),
         .sm_tdata(sm_tdata),
         .sm_tlast(sm_tlast),
-        .axis_clk(axis_clk),
-        .axis_rst_n(axis_rst_n));
 
+        // ram for tap
+        .tap_WE(tap_WE),
+        .tap_EN(tap_EN),
+        .tap_Di(tap_Di),
+        .tap_A(tap_A),
+        .tap_Do(tap_Do),
+
+        // ram for data
+        .data_WE(data_WE),
+        .data_EN(data_EN),
+        .data_Di(data_Di),
+        .data_A(data_A),
+        .data_Do(data_Do),
+
+        .axis_clk(axis_clk),
+        .axis_rst_n(axis_rst_n)
+
+        );
+    
+    // RAM for tap
+    bram11 tap_RAM (
+        .CLK(axis_clk),
+        .WE(tap_WE),
+        .EN(tap_EN),
+        .Di(tap_Di),
+        .A(tap_A),
+        .Do(tap_Do)
+    );
+
+    // RAM for data: choose bram11 or bram12
+    bram11 data_RAM(
+        .CLK(axis_clk),
+        .WE(data_WE),
+        .EN(data_EN),
+        .Di(data_Di),
+        .A(data_A),
+        .Do(data_Do)
+    );
 
     reg signed [(pDATA_WIDTH-1):0] Din_list[0:(Data_Num-1)];
     reg signed [(pDATA_WIDTH-1):0] golden_list[0:(Data_Num-1)];
@@ -109,53 +161,6 @@ module fir_tb
         end
     end
 
-    integer i;
-    initial begin
-        $display("------------Start simulation-----------");
-        ss_tvalid = 0;
-        $display("----Start the data input(AXI-Stream)----");
-        for(i=0;i<(data_length-1);i=i+1) begin
-            ss_tlast = 0; ss(Din_list[i]);
-        end
-        config_read_check(12'h00, 32'h00, 32'h0000_000f); // check idle = 0
-        ss_tlast = 1; ss(Din_list[(Data_Num-1)]);
-        $display("------End the data input(AXI-Stream)------");
-    end
-
-    integer k;
-    reg error;
-    reg status_error;
-    initial begin
-        error = 0; status_error = 0;
-        sm_tready = 1;
-        wait (sm_tvalid);
-        for(k=0;k < data_length;k=k+1) begin
-            sm(golden_list[k],k);
-        end
-        config_read_check(12'h00, 32'h02, 32'h0000_0002); // check ap_done = 1 (0x00 [bit 1])
-        config_read_check(12'h00, 32'h04, 32'h0000_0004); // check ap_idle = 1 (0x00 [bit 2])
-        if (error == 0 & error_coef == 0) begin
-            $display("---------------------------------------------");
-            $display("-----------Congratulations! Pass-------------");
-        end
-        else begin
-            $display("--------Simulation Failed---------");
-        end
-        $finish;
-    end
-
-    // Prevent hang
-    integer timeout = (1000000);
-    initial begin
-        while(timeout > 0) begin
-            @(posedge axis_clk);
-            timeout = timeout - 1;
-        end
-        $display($time, "Simualtion Hang ....");
-        $finish;
-    end
-
-
     reg signed [31:0] coef[0:10]; // fill in coef 
     initial begin
         coef[0]  =  32'd0;
@@ -171,37 +176,83 @@ module fir_tb
         coef[10] =  32'd0;
     end
 
+    // Prevent hang
+    integer timeout = (500000); //1000000
+    initial begin
+        while(timeout > 0) begin
+            @(posedge axis_clk);
+            timeout = timeout - 1;
+        end
+        $display("Simualtion Hang ....");
+        $finish;
+    end
+    
+    integer i;
+    initial begin
+        $display("------------Start simulation-----------");
+        ss_tvalid = 0;
+        $display("----Start the data input(AXI-Stream)----");
+        for(i=0;i<(data_length-1);i=i+1) begin
+            ss_tlast = 0; ss(Din_list[i]);
+        end
+        config_read_check(12'h00, 32'h00, 32'h0000_000f); // check idle = 0
+        ss_tlast = 1; ss(Din_list[(Data_Num-1)]);
+        $display("------End the data input(AXI-Stream)------");
+    end
+
     reg error_coef;
+    integer k;
     initial begin
         error_coef = 0;
+        awvalid <= 0; wvalid <= 0; arvalid <= 0;
         $display("----Start the coefficient input(AXI-lite)----");
         config_write(12'h10, data_length);
         for(k=0; k< Tape_Num; k=k+1) begin
-            config_write(12'h20+k, coef[k]);
+            config_write(12'h20+4*k, coef[k]);
         end
-        awvalid <= 0; wvalid <= 0;
         // read-back and check
         $display(" Check Coefficient ...");
         for(k=0; k < Tape_Num; k=k+1) begin
-            config_read_check(12'h20+k, coef[k], 32'hffffffff);
+            config_read_check(12'h20+4*k, coef[k], 32'hffffffff);
         end
-        arvalid <= 0;
+        
         $display(" Tape programming done ...");
         $display(" Start FIR");
         @(posedge axis_clk) config_write(12'h00, 32'h0000_0001);    // ap_start = 1
         $display("----End the coefficient input(AXI-lite)----");
     end
 
+    reg error;
+    reg status_error;
+    integer n;
+    initial begin
+        error = 0; status_error = 0;
+        sm_tready = 1;
+        for(n=0;n < data_length;n=n+1) begin
+            sm(golden_list[n],n);
+        end
+        config_read_check(12'h00, 32'h02, 32'h0000_0002); // check ap_done = 1 (0x00 [bit 1])
+        config_read_check(12'h00, 32'h04, 32'h0000_0004); // check ap_idle = 1 (0x00 [bit 2])
+        if (error == 0 & error_coef == 0) begin
+            $display("---------------------------------------------");
+            $display("-----------Congratulations! Pass-------------");
+        end
+        else begin
+            $display("--------Simulation Failed---------");
+        end
+        $finish;
+    end
+
+
     task config_write;
         input [11:0]    addr;
         input [31:0]    data;
         begin
-            awvalid <= 0; wvalid <= 0;
             @(posedge axis_clk);
             awvalid <= 1; awaddr <= addr;
             wvalid  <= 1; wdata <= data;
-            @(posedge axis_clk);
             while (!wready) @(posedge axis_clk);
+            awvalid <= 0; wvalid <= 0;
         end
     endtask
 
@@ -210,18 +261,19 @@ module fir_tb
         input signed [31:0] exp_data;
         input [31:0]        mask;
         begin
-            arvalid <= 0;
             @(posedge axis_clk);
-            arvalid <= 1; araddr <= addr;
-            rready <= 1;
-            @(posedge axis_clk);
+            #0;
+            arvalid = 1; araddr = addr;
+            rready = 1;
+            while (!arready) @(posedge axis_clk);
             while (!rvalid) @(posedge axis_clk);
             if( (rdata & mask) != (exp_data & mask)) begin
                 $display("ERROR: exp = %d, rdata = %d", exp_data, rdata);
-                error_coef <= 1;
+                error_coef = 1;
             end else begin
                 $display("OK: exp = %d, rdata = %d", exp_data, rdata);
             end
+            arvalid = 0;
         end
     endtask
 
@@ -230,12 +282,15 @@ module fir_tb
     task ss;
         input  signed [31:0] in1;
         begin
+            @(posedge axis_clk);
+            #0;
             ss_tvalid <= 1;
             ss_tdata  <= in1;
-            @(posedge axis_clk);
             while (!ss_tready) begin
                 @(posedge axis_clk);
             end
+            ss_tvalid <= 0;
+            ss_tlast <= 0;
         end
     endtask
 
@@ -243,9 +298,7 @@ module fir_tb
         input  signed [31:0] in2; // golden data
         input         [31:0] pcnt; // pattern count
         begin
-            sm_tready <= 1;
-            @(posedge axis_clk) 
-            wait(sm_tvalid);
+            @(posedge axis_clk)
             while(!sm_tvalid) @(posedge axis_clk);
             if (sm_tdata != in2) begin
                 $display("[ERROR] [Pattern %d] Golden answer: %d, Your answer: %d", pcnt, in2, sm_tdata);
@@ -254,7 +307,6 @@ module fir_tb
             else begin
                 $display("[PASS] [Pattern %d] Golden answer: %d, Your answer: %d", pcnt, in2, sm_tdata);
             end
-            @(posedge axis_clk);
         end
     endtask
 endmodule
