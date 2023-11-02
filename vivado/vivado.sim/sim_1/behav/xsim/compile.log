@@ -1,0 +1,8 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/ubuntu/SoC_lab_fir/bram/bram11.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bram11
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/ubuntu/SoC_lab_fir/fir/rtl/fir.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fir
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/ubuntu/SoC_lab_fir/fir/tb/fir_tb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fir_tb
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/ubuntu/SoC_lab_fir/vivado/vivado.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

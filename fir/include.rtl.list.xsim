@@ -1,2 +1,1 @@
-# design sources
-./rtl/*.v
+./rtl/fir.v

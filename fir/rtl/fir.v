@@ -200,348 +200,358 @@ module fir
                         tap_A = counter_r << 2;
                         data_EN = 1;
                         bram_wait_w = 0;
-                        case (bram_first_data_position_r)
-                            4'd0: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 9 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd1: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 0 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd2: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 1 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd3: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 2 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd4: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 3 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd5: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 4 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd6: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 5 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd7: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 6 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd8: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 8 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 7 << 2;
-                                    end
-                                endcase
-                            end
-                            4'd9: begin
-                                case (counter_r)
-                                    4'd0: begin
-                                        data_A = 9 << 2;
-                                    end
-                                    4'd1: begin
-                                        data_A = 0 << 2;
-                                    end
-                                    4'd2: begin
-                                        data_A = 1 << 2;
-                                    end
-                                    4'd3: begin
-                                        data_A = 2 << 2;
-                                    end
-                                    4'd4: begin
-                                        data_A = 3 << 2;
-                                    end
-                                    4'd5: begin
-                                        data_A = 4 << 2;
-                                    end
-                                    4'd6: begin
-                                        data_A = 5 << 2;
-                                    end
-                                    4'd7: begin
-                                        data_A = 6 << 2;
-                                    end
-                                    4'd8: begin
-                                        data_A = 7 << 2;
-                                    end
-                                    4'd9: begin
-                                        data_A = 8 << 2;
-                                    end
-                                endcase
-                            end
-                        endcase
+
+                        //LUT=330, better
+                        if ((($signed({1'b0, counter_r}) + $signed({1'b0, bram_first_data_position_r})) - 10) >= 0) begin
+                            data_A = (($signed({1'b0, counter_r}) + $signed({1'b0, bram_first_data_position_r})) - 10) << 2;
+                        end
+                        else begin
+                            data_A = ($signed({1'b0, counter_r}) + $signed({1'b0, bram_first_data_position_r})) << 2;
+                        end
+                        
+                        //LUT=347
+                        // case (bram_first_data_position_r)
+                        //     4'd0: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd1: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd2: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd3: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd4: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd5: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd6: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd7: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd8: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        //     4'd9: begin
+                        //         case (counter_r)
+                        //             4'd0: begin
+                        //                 data_A = 9 << 2;
+                        //             end
+                        //             4'd1: begin
+                        //                 data_A = 0 << 2;
+                        //             end
+                        //             4'd2: begin
+                        //                 data_A = 1 << 2;
+                        //             end
+                        //             4'd3: begin
+                        //                 data_A = 2 << 2;
+                        //             end
+                        //             4'd4: begin
+                        //                 data_A = 3 << 2;
+                        //             end
+                        //             4'd5: begin
+                        //                 data_A = 4 << 2;
+                        //             end
+                        //             4'd6: begin
+                        //                 data_A = 5 << 2;
+                        //             end
+                        //             4'd7: begin
+                        //                 data_A = 6 << 2;
+                        //             end
+                        //             4'd8: begin
+                        //                 data_A = 7 << 2;
+                        //             end
+                        //             4'd9: begin
+                        //                 data_A = 8 << 2;
+                        //             end
+                        //         endcase
+                        //     end
+                        // endcase
                         counter_w = counter_r;
                     end
                     else begin
