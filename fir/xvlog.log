@@ -1,1 +1,6 @@
-ERROR: [XSIM 43-4316] Can not find file: ./rtl/*
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/nieh/Documents/Joshuanieh/GIEE/Soc_Design_Lab/SoC_lab_fir/fir/rtl/fir.v" into library work
+INFO: [VRFC 10-311] analyzing module fir
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/nieh/Documents/Joshuanieh/GIEE/Soc_Design_Lab/SoC_lab_fir/bram/bram11.v" into library work
+INFO: [VRFC 10-311] analyzing module bram11
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/nieh/Documents/Joshuanieh/GIEE/Soc_Design_Lab/SoC_lab_fir/fir/tb/fir_tb.v" into library work
+INFO: [VRFC 10-311] analyzing module fir_tb

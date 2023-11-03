@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# xsim v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Fri Nov  3 15:00:29 2023
+# Process ID: 14928
+# Current directory: C:/Users/nieh/Documents/Joshuanieh/GIEE/Soc_Design_Lab/SoC_lab_fir/fir
+# Command line: xsim.exe -mode tcl -source {xsim.dir/fir_tb_elab/xsim_script.tcl}
+# Log file: C:/Users/nieh/Documents/Joshuanieh/GIEE/Soc_Design_Lab/SoC_lab_fir/fir/xsim.log
+# Journal file: C:/Users/nieh/Documents/Joshuanieh/GIEE/Soc_Design_Lab/SoC_lab_fir/fir\xsim.jou
+# Running On: LAPTOP-70AP7EOE, OS: Windows, CPU Frequency: 2112 MHz, CPU Physical cores: 4, Host memory: 3998 MB
+#-----------------------------------------------------------
+source xsim.dir/fir_tb_elab/xsim_script.tcl
+run -all
